@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d660d685-4cf9-4a05-ba85-09cef6221fe0" name="apache" url="http://localhost:8080">
+        <fileTransfer mountedRoot="D:\Проект\Board-Games-Store\Frontend" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>

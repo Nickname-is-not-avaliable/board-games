@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Аналитика</title>
+    <style>
+        /* Общие стили для страницы */
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+    
+        h1, h2, h3, h4, h5 {
+            color: #f0f0f0;
+        }
+    
+        /* Контейнер с графиком */
+        .chart-container {
+            background-color: #2c2f38;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+        }
+    
+        /* Канвас графика */
+        canvas {
+            background-color: #2c2f38;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    
+        /* Тексты и статистика */
+        #totalOrders, #totalAmount {
+            font-size: 1.5rem;
+            color: #66fcf1;
+            font-weight: bold;
+        }
+    
+        #serviceStats {
+            list-style-type: none;
+            padding: 0;
+        }
+    
+        #serviceStats li {
+            color: #e0e0e0;
+            margin-bottom: 8px;
+        }
+    
+        #serviceStats li::before {
+            content: '•';
+            color: #66fcf1;
+            margin-right: 10px;
+        }
+    
+        /* Стиль кнопок */
+        .btn {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #444;
+        }
+    
+        .btn:hover {
+            background-color: #555;
+            border-color: #666;
+        }
+    
+        .btn-outline-success {
+            color: #28a745;
+            border-color: #28a745;
+        }
+    
+        .btn-outline-success:hover {
+            background-color: rgba(40, 167, 69, 0.1);
+            border-color: #28a745;
+        }
+    
+        /* Для статистики с иконками */
+        #serviceStats li {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+    
+        #serviceStats li span {
+            margin-left: 8px;
+            font-weight: bold;
+        }
+    
+        #serviceStats li .service-icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+            color: #66fcf1;
+        }
+    </style>
+    
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body class="bg-dark">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("header-and-sidebar.html")
+                .then(response => response.text())
+                .then(html => {
+                    document.body.insertAdjacentHTML("afterbegin", html);
+    
+                    const tempDiv = document.createElement("div");
+                    tempDiv.innerHTML = html;
+    
+                    const scripts = tempDiv.querySelectorAll("script");
+                    scripts.forEach(script => {
+                        const newScript = document.createElement("script");
+                        if (script.src) {
+                            newScript.src = script.src;
+                        } else {
+                            newScript.textContent = script.textContent;
+                        }
+                        document.body.appendChild(newScript);
+                    });
+                })
+                .catch(error => console.error("Error loading header and sidebar:", error));
+        });
+        </script> 
+
+
+<main class="bg-dark">
+    <h1 class="text-center text-light mb-2">Статистика игр</h1>
+    <p class="mb-0 text-light fs-5">За всё время было добавлено в избранное <span id="totalOrders">0</span> игр 
+    <h4 class="text-light">Статистика добавления в избранное:</h4>
+    <ul class="mb-0 fs-5 text-light" id="serviceStats"></ul>
+    <h4 class="text-center mt-3 text-light">График добавления по дням:</h4>
+    <canvas class="bg-white" id="salesChart" width="400" height="200"></canvas>
+</main>
+
+<script src="../js/cookie.js"></script>
+<script src="../js/loadInformation.js"></script>
+<script src="../js/fetchAPI.js"></script>
+<script src="../js/orderHandlers.js"></script>
+<script src="../js/info.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
+</body>
+</html>

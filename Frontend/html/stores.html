@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазины</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
+    <script src="https://api-maps.yandex.ru/v3/?apikey=a9424ae7-e7bf-4dcb-87a1-418a07851077&lang=ru_RU"
+            type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/v3/?apikey=c8efdf97-cb56-4062-ac67-2f5c7b9305fe&lang=en_US"
+            type="text/javascript"></script>
+    <script>
+        window.map = null;
+
+        main();
+
+        async function main() {
+            await ymaps3.ready;
+            const {
+                YMap,
+                YMapDefaultSchemeLayer,
+                YMapMarker,
+                YMapControls,
+                YMapDefaultFeaturesLayer
+            } = ymaps3;
+
+            const {YMapZoomControl} = await ymaps3.import('@yandex/ymaps3-controls@0.0.1');
+            const {YMapDefaultMarker} = await ymaps3.import('@yandex/ymaps3-markers@0.0.1');
+
+            map = new YMap(document.getElementById('app'), {location: LOCATION});
+
+            map.addChild(scheme = new YMapDefaultSchemeLayer());
+            map.addChild(new YMapControls({position: 'right'}).addChild(new YMapZoomControl({})));
+            map.addChild(new YMapDefaultFeaturesLayer({id: 'features'}));
+
+            POINTS.forEach((point) => {
+                if (point.element) {
+                    map.addChild(new YMapMarker(point, point.element(point)));
+                } else {
+                    map.addChild(new YMapDefaultMarker(point));
+                }
+            });
+
+            const marker = new YMapDefaultMarker(INC_POINT);
+            map.addChild(marker);
+
+            const marker2 = new YMapDefaultMarker(INC2_POINT);
+            map.addChild(marker2);
+
+            let inc = 0;
+            const updateTitle = () => {
+                inc++;
+                marker.update({
+                    title: 'Marker inc #' + inc
+                });
+            };
+
+            updateTitle();
+            setInterval(updateTitle, 1000);
+
+            setTimeout(() => {
+                marker2.update({
+                    title: 'Marker 2',
+                    subtitle: 'Marker 2'
+                });
+            }, 1000);
+        }
+    </script>
+
+    <!-- prettier-ignore -->
+    <style> html, body, #app {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .toolbar {
+        position: absolute;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        padding: 16px;
+    }
+
+    .toolbar a {
+        padding: 16px;
+    }  </style>
+</head>
+<body class="bg-dark-subtle">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("header-and-sidebar.html")
+                .then(response => response.text())
+                .then(html => {
+                    document.body.insertAdjacentHTML("afterbegin", html);
+    
+                    const tempDiv = document.createElement("div");
+                    tempDiv.innerHTML = html;
+    
+                    const scripts = tempDiv.querySelectorAll("script");
+                    scripts.forEach(script => {
+                        const newScript = document.createElement("script");
+                        if (script.src) {
+                            newScript.src = script.src;
+                        } else {
+                            newScript.textContent = script.textContent;
+                        }
+                        document.body.appendChild(newScript);
+                    });
+                })
+                .catch(error => console.error("Error loading header and sidebar:", error));
+        });
+        </script> 
+
+<main>
+    <div id="app"></div>
+
+    <div id="shop_2" class="store__address" itemprop="address">Минск, ул.Ольшевского, 1А, пом. 3Н, 5 минут от ст.м. "Пушкинская"
+    </div>
+    <div id="shop_1" class="store__address" itemprop="address" style="display: none;">Минск, ТЦ «Московско-Венский», 3 этаж, павильон 351, пр. Независимости, 58 (ст.м. «Площадь Якуба Коласа»), г. Минск.
+    </div>
+    <div class="store__prop store__prop_line">
+        <i class="store__prop-icon store__prop-icon_phone material-icons" data-icon="phone"></i>
+        <span class="store__prop-name">Телефон:</span>
+        <span itemprop="telephone">+375 29 6677991</span>
+    </div>
+    <div class="store__prop store__prop_line">
+        <i class="store__prop-icon store__prop-icon_subway custom-icons icon-subway"></i>
+        <span class="store__prop-name">Станция метро:</span> Пушкинская
+    </div>
+
+</main>
+<script src="../js/stores.js"></script>
+<script src="../js/loadInformation.js"></script>
+<script src="../js/cookie.js"></script>
+<script src="../js/loadInformation.js"></script>
+<script src="../js/fetchAPI.js"></script>
+
+<style>
+    #app {
+        height: 500px;
+        width: 100%;
+    }
+</style>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Избранное</title>
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+          <link rel="stylesheet" href="../css/cart.css">    
+          <link rel="stylesheet" href="../css/styles.css">
+
+    <title>Landing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
+</head>
+<body class="dark">
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("header-and-sidebar.html")
+                .then(response => response.text())
+                .then(html => {
+                    document.body.insertAdjacentHTML("afterbegin", html);
+    
+                    const tempDiv = document.createElement("div");
+                    tempDiv.innerHTML = html;
+    
+                    const scripts = tempDiv.querySelectorAll("script");
+                    scripts.forEach(script => {
+                        const newScript = document.createElement("script");
+                        if (script.src) {
+                            newScript.src = script.src;
+                        } else {
+                            newScript.textContent = script.textContent;
+                        }
+                        document.body.appendChild(newScript);
+                    });
+                })
+                .catch(error => console.error("Error loading header and sidebar:", error));
+        });
+        </script> 
+
+
+<main>
+    <h1 class="text-light">Ваше избранное</h1>
+
+    <table id="OrderTable" class="table table-dark table-hover userTable">
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Дата добавления</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div id="declineOrderModal" data-bs-theme="dark" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p>Вы уверены, что хотите отменить этот заказ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="confirmDeclineOrder" class="btn btn-outline-danger"
+                            data-bs-dismiss="modal">
+                        Да
+                    </button>
+                    <button type="button" id="cancelDeclineOrder" class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal">
+                        Нет
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="../js/loadInformation.js"></script>
+<script src="../js/cookie.js"></script>
+<script src="../js/loadInformation.js"></script>
+<script src="../js/fetchAPI.js"></script>
+<script src="../js/orderHandlers.js"></script>
+<script src="../js/cart.js"></script>
+
+</body>
+</html>

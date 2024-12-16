@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
+</head>
+<body class="dark">
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("header-and-sidebar.html")
+                .then(response => response.text())
+                .then(html => {
+                    document.body.insertAdjacentHTML("afterbegin", html);
+    
+                    const tempDiv = document.createElement("div");
+                    tempDiv.innerHTML = html;
+    
+                    const scripts = tempDiv.querySelectorAll("script");
+                    scripts.forEach(script => {
+                        const newScript = document.createElement("script");
+                        if (script.src) {
+                            newScript.src = script.src;
+                        } else {
+                            newScript.textContent = script.textContent;
+                        }
+                        document.body.appendChild(newScript);
+                    });
+                })
+                .catch(error => console.error("Error loading header and sidebar:", error));
+        });
+        </script> 
+
+
+<main class="notModal">
+
+
+    <h1>Настройки</h1>
+
+    <form id="editUserForm">
+        <input type="hidden" id="editUserId" class="col-form-label" name="userId" />
+        <div class="form-group">
+            <label for="editUsername">Имя пользователя:</label>
+            <input type="text" class="form-control" id="editUsername" name="username" required />
+        </div>
+
+        <div class="form-group">
+            <label for="editUserPassword" class="col-form-label">Пароль:</label>
+            <input type="password" class="form-control" id="editUserPassword" name="password" required />
+        </div>
+
+
+        <div class="form-group">
+            <label for="editUserEmail">e-mail:</label>
+            <input type="text" class="form-control" id="editUserEmail" name="e-mail" />
+        </div>
+
+
+        <div class="text-center">
+            <button id="submitEditButton" class="btn btn-outline-primary mt-2" type="button">
+                Сохранить
+            </button>
+        </div>
+
+    </form>
+
+    <!-- <h1>Ваши заказы и предзаказы</h1>
+
+    <label class="text-light">Статус:</label>
+    <select id="orderStatus" class="form-select bg-dark text-light userTable" aria-label="Default select example">
+        <option value="OPENED">Активные</option>
+        <option value="PREORDER">Предзаказ</option>
+        <option value="DELIVERY">В доставке</option>
+        <option value="CONFIRMED">Куплено</option>
+        <option value="CANCELLED">Отменено</option>
+        <option value="ALL">Все</option>
+        <option value="Хоп">Скрыть все заказы</option>
+    </select>
+    <table id="OrderTable" class="table table-dark table-hover userTable">
+        <thead>
+        <tr>
+            <th>№</th>
+            <th>Детали</th>
+            <th>Цена</th>
+            <th>Статус</th>
+            <th>Дата</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div id="deleteOrderModal" data-bs-theme="dark" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p>Вы уверены, что хотите отменить этот заказ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="confirmDeclineOrder" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                        Да
+                    </button>
+                    <button type="button" id="cancelDeclineOrder" class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal">
+                        Отмена
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<script src="../js/loadInformation.js"></script>
+<script src="../js/cookie.js"></script>
+<script src="../js/loadInformation.js"></script>
+<script src="../js/fetchAPI.js"></script>
+<script src="../js/orderHandlers.js"></script>
+<script src="../js/settings.js"></script>
+
+</body>
+</html>

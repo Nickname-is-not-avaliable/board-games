@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="apache">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/Board-Games-Store" local="$PROJECT_DIR$" web="/Board-Games-Store" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

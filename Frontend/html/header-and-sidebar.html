@@ -1,0 +1,210 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand link-light ms-5" href="landing.html">Настольный</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="mx-auto d-flex justify-content-between">
+                    <form class="form-inline" id="searchForm">
+                        <input class="form-control flex-grow-1" type="search" placeholder="Название товара"
+                               aria-label="Search" id="searchInput">
+                    </form>
+                    <button class="btn btn-outline-light my-sm-0" id="enterButton">Поиск</button>
+                </div>
+                <a class="me-4 link-underline-opacity-0  link-light" href="cart.html"> ★ Избранное
+                </a>
+                <a id="enter" class="nav-link link-light me-3" href="login.html">Войти</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <aside class="sidebar">
+        <ul>
+            <h5 id="sidebar"></h5>
+            <h5>
+                <a href="catalog.html"
+                   class="link-offset-2 link-light link-underline link-underline-opacity-0">Главная</a>
+            </h5>
+            <h5>
+                <a href="catalog.html?popular=1"
+                   class="link-offset-2 link-light link-underline link-underline-opacity-0">Популярные</a>
+            </h5>
+            <h5>
+                <a href="catalog.html?best=1"
+                   class="link-offset-2 link-light link-underline link-underline-opacity-0">Лучшие</a>
+            </h5>
+
+            <h5>
+                <a href="#" class="link-offset-2 link-light link-underline link-underline-opacity-0 d-flex align-items-center" 
+                   onclick="toggleCategories(event)">
+                    Категории
+                    <span id="categoryIndicator" class="ms-2 transition">&#9662;</span>
+                </a>
+            </h5>
+            <ul id="categoryList" class="category-list ms-2 transition" style="list-style-type: none; padding-left: 10px;">
+                <li>
+                    <a href="catalog.html?category=Стратегия" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        <span class="material-icons-outlined">sports_esports</span> Стратегия
+                    </a>
+                </li>
+                <li>
+                    <a href="catalog.html?category=Кооперативная" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        <span class="material-icons-outlined">group</span> Кооперативная
+                    </a>
+                </li>
+                <li>
+                    <a href="catalog.html?category=Полукооперативная" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        Полукооперативная
+                    </a>
+                </li>
+                <li>
+                    <a href="catalog.html?category=Классическая" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        <span class="material-icons-outlined">book</span> Классическая
+                    </a>
+                </li>
+                <li>
+                    <a href="catalog.html?category=Детская" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        <span class="material-icons-outlined">child_care</span> Детская
+                    </a>
+                </li>
+                <li>
+                    <a href="catalog.html?category=Приключенческая" class="link-offset-2 link-light link-underline link-underline-opacity-0" style="white-space: normal; font-size: 14px;">
+                        <span class="material-icons-outlined">explore</span> Приключенческая
+                    </a>
+                </li>
+                <li>
+                    <a href="catalog.html?category=Карточная" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        <span class="material-icons-outlined">credit_card</span> Карточная
+                    </a>
+                </li>
+                <li>
+                    <a href="catalog.html?category=Семейная" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        <span class="material-icons-outlined">family_restroom</span> Семейная
+                    </a>
+                </li>
+                <li>
+                    <a href="catalog.html?category=Экономическая" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        <span class="material-icons-outlined">account_balance_wallet</span> Экономическая
+                    </a>
+                </li>
+                <li>
+                    <a href="catalog.html?category=Для одного" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        <span class="material-icons-outlined">person</span> Для одного
+                    </a>
+                </li>
+                <li>
+                    <a href="catalog.html?category=Детективная" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        <span class="material-icons-outlined">search</span> Детективная
+                    </a>
+                </li>
+                <li>
+                    <a href="catalog.html?category=Для вечеринки" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        <span class="material-icons-outlined">celebration</span> Для вечеринки
+                    </a>
+                </li>
+
+                <li>
+                    <a href="catalog.html?category=Квест" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        <span class="material-icons-outlined">question_answer</span> Квест
+                    </a>
+                </li>
+                <li>
+                    <a href="catalog.html?category=Дуэль" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        <span class="material-icons-outlined">sports_martial_arts</span> Дуэль
+                    </a>
+                </li>
+                <li>
+                    <a href="catalog.html?category=На логику" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        <span class="material-icons-outlined">memory</span> На логику
+                    </a>
+                </li>
+                <li>
+                    <a href="catalog.html?category=Другое" class="link-offset-2 link-light link-underline link-underline-opacity-0">
+                        <span class="material-icons-outlined">more_horiz</span> Другое
+                    </a>
+                </li>
+            </ul>
+            
+            
+            
+            <h5 id="info"></h5>
+        </ul>
+    </aside>
+</div>
+
+<style>
+    .category-list {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+        opacity: 0;
+    }
+
+    .category-list.open {
+        max-height: 1000px; 
+        opacity: 1;
+    }
+
+    .rotate-up {
+        transform: rotate(180deg);
+    }
+</style>
+
+<script>
+    function performSearch() {
+    const searchInput = document.getElementById("searchInput").value.trim();
+    if (searchInput) {
+        window.location.href = `catalog.html?id=${encodeURIComponent(searchInput)}`;
+    }
+    }
+
+    document.getElementById("enterButton").addEventListener("click", performSearch);
+    document.getElementById("searchForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        performSearch();
+    });
+
+
+    if (getCookieValue("role") === "ADMIN") {
+    chandgePageElement('sidebar','Админ панель','admin_panel.html');
+    chandgePageElement('info','Аналитика','info.html');
+    }
+
+    if (getCookieValue("role") === "ADMIN" || getCookieValue("role") === "USER") {
+    chandgePageElement('enter','Профиль','profile.html');
+    }
+
+    if (window.location.pathname.endsWith("profile.html")) {
+        chandgePageElement('enter','Выйти','logout.html');
+        const divElement = document.querySelector(`#enter`);
+    }
+
+    function chandgePageElement(selector,name,href){
+        const divElement = document.querySelector(`#${selector}`);
+        divElement.innerHTML = "";
+        const tag = document.createElement(`a`);
+        tag.innerHTML = `${name}`;
+        tag.href = `${href}`;
+        tag.className = 'link-offset-2 link-light link-underline link-underline-opacity-0';
+        divElement.appendChild(tag);
+    }
+
+    function toggleCategories(event) {
+        event.preventDefault();
+        const categoryList = document.getElementById("categoryList");
+        const indicator = document.getElementById("categoryIndicator");
+
+        const isHidden = !categoryList.classList.contains("open");
+        categoryList.classList.toggle("open", isHidden);
+
+        indicator.classList.toggle("rotate-up", isHidden);
+    }
+</script>
